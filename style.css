@@ -3,6 +3,11 @@
 
 /* Define variables */
 :root {
+    /* Fonts */
     --primary-font: 'Judson', serif;
     --secondary-font: 'Inter', sans-serif;
+    
+    /* Colors */
+    --primary-color: #FF8000; /* Orange */
+    --secondary-color: #007FFF; /* Blue */
 }
