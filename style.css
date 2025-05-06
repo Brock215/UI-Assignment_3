@@ -11,3 +11,62 @@
     --primary-color: #FF8000; /* Orange */
     --secondary-color: #007FFF; /* Blue */
 }
+
+/* General Styles */
+body {
+    font-family: var(--primary-font);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.menu-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.about, .categories {
+    padding: 20px;
+    text-align: center;
+}
+
+.categories .category-slider {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.categories .category img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: white;
+}
