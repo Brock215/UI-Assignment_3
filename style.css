@@ -35,17 +35,25 @@ header {
     text-align: center;
 }
 
+/* Adjust category images */
 .categories .category-slider {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: flex-start; /* Align items to the start */
+    gap: 20px; /* Increase spacing between images */
+    overflow-x: scroll; /* Allow horizontal scrolling */
+}
+
+
+/* Optional: Hide scrollbar for a cleaner look */
+.categories .category-slider::-webkit-scrollbar {
+    display: none;
 }
 .categories header{
     text-align: left;
 }
 .categories .category img {
-    width: 150px;
-    height: 150px;
+    width: 300px; /* Increase width */
+    height: 300px; /* Increase height */
     object-fit: cover;
     border-radius: 10px;
 }
