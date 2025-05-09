@@ -52,7 +52,7 @@ header {
     text-align: left;
 }
 .categories .category img {
-    width: 300px; /* Increase width */
+    width: 200px; /* Increase width */
     height: 300px; /* Increase height */
     object-fit: cover;
     border-radius: 10px;
@@ -63,6 +63,6 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: var(--secondary-color);
+    background-color: var(--footer-color);
     color: white;
 }
