@@ -9,55 +9,83 @@
     <link rel="stylesheet" href="fonts.css"> <!-- Font styles CSS file -->
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">Totally Reptiles</div>
-        <div class="menu-icon">&#9776;</div>
-    </header>
+        <!-- Side Navigation -->
+        <nav class="sidenav">
+            <a class="menu-close-btn">&#9776;</a>
+            <a>Home</a>
+            <a>About</a>
+            <a>Categories</a>
+            <a>Contact</a>
+        </nav>
+        <div class="overlay">
+        <!-- Header -->
+        <header>
+            <div class="logo">Totally Reptiles</div>
+            <div class="menu-icon">&#9776;</div>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="image/scorpian.png" alt="Scorpion">
-    </section>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="image/scorpian.png" alt="Scorpion">
+        </section>
 
-    <!-- About Section -->
-    <section class="about">
-        <h2>About Us</h2>
-        <p>
-            Totally Reptiles is a medium-sized family-owned business located in Greensborough & now Kangaroo Flat.
-        </p>
-        <p>
-            Specialising in a wide range of Reptiles, Birds & Fish such as lizards, snakes, frogs, geckos, turtles, birds (ranging from small parrots to large), fish (from goldfish through to Australian native fish), spiders & scorpions including all the needs and accessories for these animals.
-        </p>
-        <p>
-            We pride ourselves in delivering quality and 100% customer service as a family business.
-        </p>
-    </section>
+        <!-- About Section -->
+        <section class="about">
+            <h2>About Us</h2>
+            <p>
+                Totally Reptiles is a medium-sized family-owned business located in Greensborough & now Kangaroo Flat.
+            </p>
+            <p>
+                Specialising in a wide range of Reptiles, Birds & Fish such as lizards, snakes, frogs, geckos, turtles, birds (ranging from small parrots to large), fish (from goldfish through to Australian native fish), spiders & scorpions including all the needs and accessories for these animals.
+            </p>
+            <p>
+                We pride ourselves in delivering quality and 100% customer service as a family business.
+            </p>
+        </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <h2>Categories</h2><hr>
-        <div class="category-slider">
-            <div class="category">
-                <img src="image/bird.png" alt="Bird">
+        <!-- Categories Section -->
+        <section class="categories">
+            <h2>Categories</h2><hr>
+            <div class="category-slider">
+                <div class="category">
+                    <img src="image/bird.png" alt="Bird">
+                </div>
+                <div class="category">
+                    <img src="image/fish.png" alt="Fish">
+                </div>
             </div>
-            <div class="category">
-                <img src="image/fish.png" alt="Fish">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div div class="footer-content">
-            <div class="footer-section">
-            <h2>Contact Us</h2>
-            <p>Phone: 9435 2152</p>
+        <!-- Footer -->
+        <footer>
+            <div div class="footer-content">
+                <div class="footer-section">
+                <h2>Contact Us</h2>
+                <p>Phone: 9435 2152</p>
+                </div>
+                <div class="footer-section">
+                <h2>Categories</h2>
+                </div>
             </div>
-            <div class="footer-section">
-            <h2>Categories</h2>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 </body>
 </html>
+<script >
+
+    // JavaScript for the menu icon toggle
+    const menuIcon = document.querySelector('.menu-icon');
+    const sidenav = document.querySelector('.sidenav');
+    const closeBtn = document.querySelector('.menu-close-btn');
+    const overlay = document.querySelector('.overlay');
+
+    closeBtn.addEventListener('click', () => {
+        sidenav.style.width = '0'; // Close the side navigation
+        overlay.style.opacity = "1"; // Reset overlay opacity
+    });
+
+    menuIcon.addEventListener('click', () => {
+        sidenav.style.width = '40%'; // Open the side navigation
+        overlay.style.opacity = "0.5";
+    });
+</script>
