@@ -106,3 +106,63 @@ footer {
 .overlay{
     opacity: 1;
 }
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    justify-items: center;
+}
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.product-card {
+    border: 2px solid #1976d2;
+    border-radius: 10px;
+    padding: 1rem 1rem 0.5rem 1rem;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    min-width: 160px;
+    max-width: 220px;
+}
+.product-img {
+    width: 140px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+.product-btn {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5em 1.5em;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    font-family: var(--secondary-font, inherit);
+}
+.footer-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: #e0e0e0;
+    color: #222;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    z-index: 100;
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.footer-section {
+    margin-bottom: 0.2em;
+}
