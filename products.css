@@ -1,4 +1,114 @@
-!-- Add the following CSS to style.css for product grid and footer if not present:
+/* General Styles */
+body {
+    font-family: var(--primary-font);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding-left: 20px;
+    text-decoration: none;
+    color: black;
+}
+.logo:visited {
+    color: black;
+}
+
+.menu-icon {
+    text-align: center;
+    width: 40%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.about, .categories {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Adjust category images */
+.categories .category-slider {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start */
+    gap: 20px; /* Increase spacing between images */
+    overflow-x: scroll; /* Allow horizontal scrolling */
+}
+
+
+/* Optional: Hide scrollbar for a cleaner look */
+.categories .category-slider::-webkit-scrollbar {
+    display: none;
+}
+.categories header{
+    text-align: left;
+}
+.categories .category img {
+    width: 200px; /* Increase width */
+    height: 300px; /* Increase height */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--footer-color);
+    color: white;
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; 
+    width: 0px; 
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: var(--primary-color); 
+    overflow-x: hidden; 
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 1; /* makes it the top element */
+
+}
+.sidenav a {
+    background-color: primary-color; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.sidenav a:hover {
+  background-color: var(--primary-color-dark); 
+
+
+
+}
+.overlay{
+    opacity: 1;
+}
 .product-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
