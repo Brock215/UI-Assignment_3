@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Your Cart | Totally Reptiles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="colours.css">
+    <link rel="stylesheet" href="fonts.css">
+</head>
+<body>
+    <nav class="sidenav">
+        <div class="menu-close-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="index.html">Home</a>
+        <a>About</a>
+        <a href="products.html">Bird</a>
+        <a href="products.html">Fish</a>
+        <a href="products.html">Reptiles</a>
+        <a>Contact</a>
+    </nav>
+    <div class="overlay"></div>
+
+    <header>
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <div class="menu-icon" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main class="cart-main">
+        <h1>Your Cart</h1>
+        <div class="cart-table">
+            <div class="cart-header">
+                <div class="cart-col-product">Product</div>
+                <div class="cart-col-qty">Quantity</div>
+                <div class="cart-col-total">Total</div>
+            </div>
+            <div id="cart-items"></div>
+            <div class="cart-footer">
+                <div></div>
+                <div class="cart-total-label"></div>
+                <div class="cart-total-value" id="cart-total"></div>
+            </div>
+        </div>
+        <button class="cart-pay-btn" id="checkout-btn">To Payment</button>
+        <button class="cart-continue-btn" onclick="window.location='products.html'">Continue Shopping</button>
+    </main>
+
+    <footer class="footer-bar">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span>&#128222;</span>
+                <strong>Contact Details</strong> 9435 2152|8/183 Para Rd, Greensborough, VIC 3088
+            </div>
+            <div class="footer-section">
+                <strong>Categories</strong>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sidenav toggle
+        const menuIcon = document.querySelector('.menu-icon');
+        const sidenav = document.querySelector('.sidenav');
+        const closeBtn = document.querySelector('.menu-close-btn');
+        const overlay = document.querySelector('.overlay');
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "1";
+        });
+        menuIcon.addEventListener('click', () => {
+            sidenav.style.width = '40%';
+            overlay.style.opacity = "0.5";
+        });
+
+        // Cart rendering
+        function renderCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            let cart = JSON.parse(localStorage.getItem('cart')) || {};
+            let total = 0;
+            cartItems.innerHTML = '';
+
+            // Example product data (should match your actual products)
+            const productData = {
+                "Fish Food": {
+                    price: 12.00,
+                    img: "image/fishfood.png",
+                    desc: "flake fish food formulated for daily feeding of all tropical fish."
+                },
+                "Bird Cage": {
+                    price: 12.00,
+                    img: "image/bird.png",
+                    desc: "A sturdy cage for your feathered friends."
+                }
+            };
+
+            const keys = Object.keys(cart);
+            if (keys.length === 0) {
+                cartItems.innerHTML = "<div class='cart-empty'>Your cart is empty.</div>";
+                cartTotal.textContent = "$0.00 AUD";
+                return;
+            }
+
+            keys.forEach(product => {
+                const qty = cart[product];
+                const data = productData[product] || { price: 0, img: "", desc: "" };
+                const itemTotal = data.price * qty;
+                total += itemTotal;
+
+                const row = document.createElement('div');
+                row.className = "cart-row";
+
+                // Product cell
+                const prodCell = document.createElement('div');
+                prodCell.className = "cart-col-product";
+                const img = document.createElement('img');
+                img.src = data.img;
+                img.alt = product;
+                img.className = "cart-img";
+                const prodInfo = document.createElement('div');
+                prodInfo.className = "cart-prod-info";
+                prodInfo.innerHTML = `<div class="cart-prod-title">${product}</div>
+                    <div class="cart-prod-price">$${data.price.toFixed(2)} AUD</div>
+                    <div class="cart-prod-desc">${data.desc}</div>`;
+                prodCell.appendChild(img);
+                prodCell.appendChild(prodInfo);
+
+                // Quantity cell
+                const qtyCell = document.createElement('div');
+                qtyCell.className = "cart-col-qty";
+                const minusBtn = document.createElement('button');
+                minusBtn.className = "cart-qty-btn";
+                minusBtn.textContent = "-";
+                const qtySpan = document.createElement('span');
+                qtySpan.className = "cart-qty-value";
+                qtySpan.textContent = qty;
+                const plusBtn = document.createElement('button');
+                plusBtn.className = "cart-qty-btn";
+                plusBtn.textContent = "+";
+                minusBtn.onclick = () => {
+                    if (cart[product] > 1) {
+                        cart[product]--;
+                    } else {
+                        delete cart[product];
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                };
+                plusBtn.onclick = () => {
+                    cart[product]++;
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                };
+                qtyCell.appendChild(minusBtn);
+                qtyCell.appendChild(qtySpan);
+                qtyCell.appendChild(plusBtn);
+
+                // Total cell
+                const totalCell = document.createElement('div');
+                totalCell.className = "cart-col-total";
+                totalCell.textContent = `$${itemTotal.toFixed(2)} AUD`;
+
+                row.appendChild(prodCell);
+                row.appendChild(qtyCell);
+                row.appendChild(totalCell);
+
+                cartItems.appendChild(row);
+            });
+
+            cartTotal.textContent = `$${total.toFixed(2)} AUD`;
+        }
+
+        renderCart();
+
+        document.getElementById('checkout-btn').onclick = function() {
+            alert("Proceeding to payment is not implemented in this demo.");
+        };
+    </script>
+</body>
+</html>
