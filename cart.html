@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="colours.css">
     <link rel="stylesheet" href="fonts.css">
 </head>
-<body>
+<body style="margin:0;padding:0;">
+    <!-- Side Navigation -->
     <nav class="sidenav">
         <div class="menu-close-btn">
             <span></span>
@@ -24,6 +25,7 @@
     </nav>
     <div class="overlay"></div>
 
+    <!-- Header -->
     <header>
         <a class="logo" href="index.html">Totally Reptiles</a>
         <div class="menu-icon" tabindex="0">
@@ -52,6 +54,7 @@
         <button class="cart-continue-btn" onclick="window.location='products.html'">Continue Shopping</button>
     </main>
 
+    <!-- Footer -->
     <footer class="footer-bar">
         <div class="footer-content">
             <div class="footer-section">
@@ -65,19 +68,25 @@
     </footer>
 
     <script>
-        // Sidenav toggle
         const menuIcon = document.querySelector('.menu-icon');
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
-        closeBtn.addEventListener('click', () => {
-            sidenav.style.width = '0';
-            overlay.style.opacity = "1";
-        });
-        menuIcon.addEventListener('click', () => {
+
+        function openNav() {
             sidenav.style.width = '40%';
-            overlay.style.opacity = "0.5";
-        });
+            overlay.style.display = "block";
+            setTimeout(() => { overlay.style.opacity = "0.5"; }, 10);
+        }
+        function closeNav() {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "0";
+            setTimeout(() => { overlay.style.display = "none"; }, 300);
+        }
+
+        menuIcon.addEventListener('click', openNav);
+        closeBtn.addEventListener('click', closeNav);
+        overlay.addEventListener('click', closeNav);
 
         // Cart rendering
         function renderCart() {
@@ -87,7 +96,6 @@
             let total = 0;
             cartItems.innerHTML = '';
 
-            // Example product data (should match your actual products)
             const productData = {
                 "Fish Food": {
                     price: 12.00,
@@ -117,7 +125,6 @@
                 const row = document.createElement('div');
                 row.className = "cart-row";
 
-                // Product cell
                 const prodCell = document.createElement('div');
                 prodCell.className = "cart-col-product";
                 const img = document.createElement('img');
@@ -132,7 +139,6 @@
                 prodCell.appendChild(img);
                 prodCell.appendChild(prodInfo);
 
-                // Quantity cell
                 const qtyCell = document.createElement('div');
                 qtyCell.className = "cart-col-qty";
                 const minusBtn = document.createElement('button');
@@ -162,7 +168,6 @@
                 qtyCell.appendChild(qtySpan);
                 qtyCell.appendChild(plusBtn);
 
-                // Total cell
                 const totalCell = document.createElement('div');
                 totalCell.className = "cart-col-total";
                 totalCell.textContent = `$${itemTotal.toFixed(2)} AUD`;
