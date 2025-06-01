@@ -17,11 +17,11 @@
             <span></span>
         </div>
         <a href="index.html">Home</a>
-        <a>About</a>
+        <a href="#">About</a>
         <a href="products.html">Bird</a>
         <a href="products.html">Fish</a>
         <a href="products.html">Reptiles</a>
-        <a>Contact</a>
+        <a href="#">Contact</a>
     </nav>
     <div class="overlay"></div>
 
@@ -182,11 +182,11 @@
             cartTotal.textContent = `$${total.toFixed(2)} AUD`;
         }
 
-        renderCart();
-
         document.getElementById('checkout-btn').onclick = function() {
-            alert("Proceeding to payment is not implemented in this demo.");
+            window.location.href = "payment.html";
         };
+
+        renderCart();
     </script>
 </body>
 </html>

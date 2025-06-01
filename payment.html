@@ -17,11 +17,11 @@
             <span></span>
         </div>
         <a href="index.html">Home</a>
-        <a>About</a>
+        <a href="#">About</a>
         <a href="products.html">Bird</a>
         <a href="products.html">Fish</a>
         <a href="products.html">Reptiles</a>
-        <a>Contact</a>
+        <a href="#">Contact</a>
     </nav>
     <div class="overlay"></div>
 
@@ -42,33 +42,33 @@
         </div>
         <form class="payment-form" autocomplete="off">
             <label for="email">Email</label>
-            <input type="email" id="email" required>
+            <input type="email" id="email">
 
             <div class="payment-section-label">Shipping Info</div>
             <label for="address">Address</label>
-            <input type="text" id="address" required>
+            <input type="text" id="address">
             <div class="payment-row">
                 <div class="payment-col">
                     <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" required>
+                    <input type="text" id="first-name">
                 </div>
                 <div class="payment-col">
                     <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" required>
+                    <input type="text" id="last-name">
                 </div>
             </div>
 
             <div class="payment-section-label">Payment Info</div>
             <label for="card-number">Card No.</label>
-            <input type="text" id="card-number" maxlength="19" required>
+            <input type="text" id="card-number" maxlength="19">
             <div class="payment-row">
                 <div class="payment-col">
                     <label for="expiration">Expiration</label>
-                    <input type="text" id="expiration" maxlength="7" placeholder="MM/YY" required>
+                    <input type="text" id="expiration" maxlength="7" placeholder="MM/YY">
                 </div>
                 <div class="payment-col">
                     <label for="security-code">Security Code</label>
-                    <input type="text" id="security-code" maxlength="4" required>
+                    <input type="text" id="security-code" maxlength="4">
                 </div>
             </div>
 
@@ -148,7 +148,7 @@
 
         document.querySelector('.payment-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Payment submitted! (Demo only)');
+            window.location.href = "confirmation.html";
         });
     </script>
 </body>
