@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Payment | Totally Reptiles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="colours.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <nav class="sidenav">
+        <div class="menu-close-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="index.html">Home</a>
+        <a>About</a>
+        <a href="products.html">Bird</a>
+        <a href="products.html">Fish</a>
+        <a href="products.html">Reptiles</a>
+        <a>Contact</a>
+    </nav>
+    <div class="overlay"></div>
+
+    <header>
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <div class="menu-icon" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main class="payment-main">
+        <h1>Payment</h1>
+        <div class="payment-summary-bar">
+            <span class="payment-summary-label">Subtotal</span>
+            <span class="payment-summary-value" id="subtotal-value">$0.00 AUD</span>
+        </div>
+        <form class="payment-form" autocomplete="off">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+
+            <div class="payment-section-label">Shipping Info</div>
+            <label for="address">Address</label>
+            <input type="text" id="address" required>
+            <div class="payment-row">
+                <div class="payment-col">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" required>
+                </div>
+                <div class="payment-col">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" required>
+                </div>
+            </div>
+
+            <div class="payment-section-label">Payment Info</div>
+            <label for="card-number">Card No.</label>
+            <input type="text" id="card-number" maxlength="19" required>
+            <div class="payment-row">
+                <div class="payment-col">
+                    <label for="expiration">Expiration</label>
+                    <input type="text" id="expiration" maxlength="7" placeholder="MM/YY" required>
+                </div>
+                <div class="payment-col">
+                    <label for="security-code">Security Code</label>
+                    <input type="text" id="security-code" maxlength="4" required>
+                </div>
+            </div>
+
+            <div class="payment-section-label">Order Summary</div>
+            <div class="order-summary">
+                <div class="order-summary-row">
+                    <span>Quantity</span>
+                    <span id="summary-qty">0</span>
+                </div>
+                <div class="order-summary-row">
+                    <span>Shipping</span>
+                    <span>FREE</span>
+                </div>
+                <div class="order-summary-row order-summary-total">
+                    <span>Total</span>
+                    <span id="summary-total">$0.00 AUD</span>
+                </div>
+            </div>
+            <button type="submit" class="pay-btn">Pay</button>
+        </form>
+    </main>
+
+    <footer class="footer-bar">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span>&#128222;</span>
+                <strong>Contact Details</strong> 9435 2152|8/183 Para Rd, Greensborough, VIC 3088
+            </div>
+            <div class="footer-section">
+                <strong>Categories</strong>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sidenav toggle
+        const menuIcon = document.querySelector('.menu-icon');
+        const sidenav = document.querySelector('.sidenav');
+        const closeBtn = document.querySelector('.menu-close-btn');
+        const overlay = document.querySelector('.overlay');
+
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "1";
+        });
+
+        menuIcon.addEventListener('click', () => {
+            sidenav.style.width = '40%';
+            overlay.style.opacity = "0.5";
+        });
+
+        overlay.addEventListener('click', () => {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "1";
+        });
+
+        // Payment summary logic
+        function updateSummary() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || {};
+            let qty = 0;
+            let total = 0;
+            const productData = {
+                "Fish Food": { price: 12.00 },
+                "Bird Cage": { price: 12.00 }
+            };
+            Object.keys(cart).forEach(product => {
+                const count = cart[product];
+                qty += count;
+                const price = productData[product] ? productData[product].price : 0;
+                total += price * count;
+            });
+            document.getElementById('summary-qty').textContent = qty;
+            document.getElementById('subtotal-value').textContent = `$${total.toFixed(2)} AUD`;
+            document.getElementById('summary-total').textContent = `$${total.toFixed(2)} AUD`;
+        }
+        updateSummary();
+
+        document.querySelector('.payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Payment submitted! (Demo only)');
+        });
+    </script>
+</body>
+</html>
