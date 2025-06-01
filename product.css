@@ -131,6 +131,11 @@ footer {
     padding-bottom: 20px;
     font-size: 1.5rem;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.sidenav a:visited {
+    color: black;
 }
 .sidenav a:hover {
     background-color: var(--primary-color-dark); 

@@ -84,6 +84,27 @@
             sidenav.style.width = '40%'; // Open the side navigation
             overlay.style.opacity = "0.5";
         });
+
+        // Quantity selector functionality
+        const quantityValue = document.querySelector('.quantity-value');    
+        const quantityBtns = document.querySelectorAll('.quantity-btn');
+        quantityBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityValue.textContent);
+                if (btn.textContent === '+') {
+                    quantityValue.textContent = currentValue + 1;
+                } else if (btn.textContent === '-' && currentValue > 1) {
+                    quantityValue.textContent = currentValue - 1;
+                }
+            });
+        });
+        // Add to cart button functionality
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+        addToCartBtn.addEventListener('click', () => {
+            alert(`Added ${quantityValue.textContent} item(s) to your cart.`);
+        });
+        
+
     </script>
 </body>
 </html>
