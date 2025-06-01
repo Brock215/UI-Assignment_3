@@ -52,7 +52,7 @@
                     <span class="quantity-value">1</span>
                     <button class="quantity-btn" aria-label="Increase quantity">+</button>
                 </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <a href="cart.html" class="add-to-cart-btn" id="add-to-cart-link">Add to Cart</a>
             </div>
         </div>
     </main>
@@ -102,25 +102,21 @@
         });
 
         // Add to cart button functionality with localStorage
-        const addToCartBtn = document.querySelector('.add-to-cart-btn');
-        addToCartBtn.addEventListener('click', () => {
+        const addToCartBtn = document.getElementById('add-to-cart-link');
+        addToCartBtn.addEventListener('click', function(e) {
             const productName = document.querySelector('.product-title').textContent.trim();
-            const quantity = parseInt(quantityValue.textContent);
+            const quantity = parseInt(document.querySelector('.quantity-value').textContent);
 
-            // Get cart from localStorage or create new
             let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-            // Update quantity for this product
             if (cart[productName]) {
                 cart[productName] += quantity;
             } else {
                 cart[productName] = quantity;
             }
 
-            // Save back to localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
-
-            alert(`Added ${quantity} item(s) to your cart.`);
+            // No alert, just go to cart.html
         });
         
 
