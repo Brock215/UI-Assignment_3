@@ -16,7 +16,6 @@ header {
     padding-bottom: 20px;
 }
 
-
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
@@ -30,10 +29,45 @@ header {
 }
 
 .menu-icon {
-    text-align: center;
-    width: 40%;
-    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 70px;
+    height: 40px;
     cursor: pointer;
+    gap: 14px;
+}
+
+.menu-icon span {
+    display: block;
+    height: 2px;
+    width: 60px;
+    background: black;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.menu-close-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    gap: 14px;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.menu-close-btn span {
+    display: block;
+    height: 2px;
+    width: 60px;
+    background: black;
+    border-radius: 2px;
+    transition: 0.3s;
 }
 
 .hero img {
@@ -63,8 +97,8 @@ header {
     text-align: left;
 }
 .categories .category img {
-    width: 200px; /* Increase width */
-    height: 300px; /* Increase height */
+    width: 200px; 
+    height: 300px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -169,4 +203,3 @@ footer {
 .footer-section {
     margin-bottom: 0.2em;
 }
--->

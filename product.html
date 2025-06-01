@@ -12,12 +12,28 @@
     <!-- Header -->
     <header>
         <a href="index.html" class="logo">Totally Reptiles</a>
-        <div class="menu-icon">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="menu-icon" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
+
+    <!-- Side Navigation -->
+    <nav class="sidenav">
+        <div class="menu-close-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a>Home</a>
+        <a>About</a>
+        <a href="products.html">Bird</a>
+        <a href="products.html">Fish</a>
+        <a href="products.html">Reptiles</a>
+        <a>Contact</a>
+    </nav>
+    <div class="overlay"></div>
 
     <!-- Product Detail -->
     <main class="product-detail">
@@ -51,5 +67,23 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // JavaScript for the menu icon toggle
+        const menuIcon = document.querySelector('.menu-icon');
+        const sidenav = document.querySelector('.sidenav');
+        const closeBtn = document.querySelector('.menu-close-btn');
+        const overlay = document.querySelector('.overlay');
+
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "1"; // Reset overlay opacity
+        });
+
+        menuIcon.addEventListener('click', () => {
+            sidenav.style.width = '40%'; // Open the side navigation
+            overlay.style.opacity = "0.5";
+        });
+    </script>
 </body>
 </html>
