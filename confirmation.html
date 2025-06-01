@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Confirmed | Totally Reptiles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="colours.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="confirmation.css">
+</head>
+<body>
+    <nav class="sidenav">
+        <div class="menu-close-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="index.html">Home</a>
+        <a>About</a>
+        <a href="products.html">Bird</a>
+        <a href="products.html">Fish</a>
+        <a href="products.html">Reptiles</a>
+        <a>Contact</a>
+    </nav>
+    <div class="overlay"></div>
+
+    <header>
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <div class="menu-icon" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main class="confirmation-main">
+        <h1 class="confirmation-title">Order confirmed</h1>
+        <div class="confirmation-message">
+            Thank you for Shopping with totally Reptiles<br>
+            Your order number is <span class="order-number">#123445</span>
+        </div>
+        <div class="confirmation-table">
+            <div class="confirmation-table-header">
+                <div class="confirmation-col-product">Product</div>
+                <div class="confirmation-col-qty">Quantity</div>
+                <div class="confirmation-col-total">Total</div>
+            </div>
+            <div class="confirmation-items" id="confirmation-items"></div>
+            <div class="confirmation-table-footer">
+                <div></div>
+                <div></div>
+                <div class="confirmation-total" id="confirmation-total"></div>
+            </div>
+        </div>
+        <a href="products.html" class="confirmation-continue-btn">Continue Shopping</a>
+    </main>
+
+    <footer class="footer-bar">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span>&#128222;</span>
+                <strong>Contact Details</strong> 9435 2152|8/183 Para Rd, Greensborough, VIC 3088
+            </div>
+            <div class="footer-section">
+                <strong>Categories</strong>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sidenav toggle
+        const menuIcon = document.querySelector('.menu-icon');
+        const sidenav = document.querySelector('.sidenav');
+        const closeBtn = document.querySelector('.menu-close-btn');
+        const overlay = document.querySelector('.overlay');
+
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "1";
+        });
+
+        menuIcon.addEventListener('click', () => {
+            sidenav.style.width = '40%';
+            overlay.style.opacity = "0.5";
+        });
+
+        overlay.addEventListener('click', () => {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "1";
+        });
+
+        // Confirmation table rendering (static demo data for image match)
+        function renderConfirmation() {
+            const items = [
+                {
+                    name: "Fish Food",
+                    price: 12.00,
+                    img: "image/fishfood-tank.png",
+                    desc: "flake fish food formulated for daily feeding of all tropical fish.",
+                    qty: 1
+                },
+                {
+                    name: "Fish Food",
+                    price: 12.00,
+                    img: "image/bird.png",
+                    desc: "flake fish food formulated for daily feeding of all tropical fish.",
+                    qty: 1
+                },
+                {
+                    name: "Fish Food",
+                    price: 12.00,
+                    img: "image/fishfood-jar.png",
+                    desc: "flake fish food formulated for daily feeding of all tropical fish.",
+                    qty: 1
+                }
+            ];
+            let total = 0;
+            const container = document.getElementById('confirmation-items');
+            container.innerHTML = '';
+            items.forEach(item => {
+                total += item.price * item.qty;
+                const row = document.createElement('div');
+                row.className = "confirmation-row";
+
+                // Product cell
+                const prodCell = document.createElement('div');
+                prodCell.className = "confirmation-col-product";
+                const img = document.createElement('img');
+                img.src = item.img;
+                img.alt = item.name;
+                img.className = "confirmation-img";
+                const prodInfo = document.createElement('div');
+                prodInfo.className = "confirmation-prod-info";
+                prodInfo.innerHTML = `<div class="confirmation-prod-title">${item.name}</div>
+                    <div class="confirmation-prod-price">$${item.price.toFixed(2)} AUD</div>
+                    <div class="confirmation-prod-desc">${item.desc}</div>`;
+                prodCell.appendChild(img);
+                prodCell.appendChild(prodInfo);
+
+                // Quantity cell
+                const qtyCell = document.createElement('div');
+                qtyCell.className = "confirmation-col-qty";
+                qtyCell.innerHTML = `
+                    <button class="confirmation-qty-btn" disabled>-</button>
+                    <span class="confirmation-qty-value">${item.qty}</span>
+                    <button class="confirmation-qty-btn" disabled>+</button>
+                `;
+
+                // Total cell
+                const totalCell = document.createElement('div');
+                totalCell.className = "confirmation-col-total";
+                totalCell.textContent = `$${(item.price * item.qty).toFixed(2)} AUD`;
+
+                row.appendChild(prodCell);
+                row.appendChild(qtyCell);
+                row.appendChild(totalCell);
+
+                container.appendChild(row);
+            });
+            document.getElementById('confirmation-total').textContent = `$${total.toFixed(2)} AUD`;
+        }
+        renderConfirmation();
+    </script>
+</body>
+</html>
