@@ -17,11 +17,11 @@
             <span></span>
         </div>
         <a href="index.html">Home</a>
-        <a href="#">About</a>
-        <a href="products.html">Bird</a>
-        <a href="products.html">Fish</a>
-        <a href="products.html">Reptiles</a>
-        <a href="#">Contact</a>
+        <a href="#" id="about-link">About</a>
+        <a href="products.html" onclick="setCategory('Bird')">Bird</a>
+        <a href="products.html" onclick="setCategory('Fish')">Fish</a>
+        <a href="products.html" onclick="setCategory('Reptiles')">Reptiles</a>
+        <a href="#" id="contact-link">Contact</a>
     </nav>
     <div class="overlay"></div>
 
@@ -37,26 +37,9 @@
 
     <!-- Main Content -->
     <main>
-        <h1>Bird Products</h1>
-        <div class="product-grid">
-            <a href="product.html" class="product-link">
-                <div class="product-card">
-                    <img src="image/bird.png" alt="Bird Cage" class="product-img">
-                    <button class="product-btn">Bird Cage</button>
-                </div>
-            </a>
-            <a href="product.html" class="product-link">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Bird Seed" class="product-img">
-                    <button class="product-btn">Bird Seed</button>
-                </div>
-            </a>
-            <a href="product.html" class="product-link">
-                <div class="product-card">
-                    <img src="image/bird.png" alt="Bird Cage" class="product-img">
-                    <button class="product-btn">Bird Cage</button>
-                </div>
-            </a>
+        <h1 id="products-title">Products</h1>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be rendered here -->
         </div>
     </main>
 
@@ -89,6 +72,83 @@
             sidenav.style.width = '40%'; // Open the side navigation
             overlay.style.opacity = "0.5";
         });
+
+        // Product data for each category
+        const productsData = {
+            Bird: [
+                {
+                    name: "Bird Cage",
+                    img: "image/bird.png",
+                    link: "product.html"
+                },
+                {
+                    name: "Bird Seed",
+                    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+                    link: "product.html"
+                },
+                {
+                    name: "Bird Perch",
+                    img: "image/bird.png",
+                    link: "product.html"
+                }
+            ],
+            Fish: [
+                {
+                    name: "Fish Food",
+                    img: "image/fishfood.png",
+                    link: "product.html"
+                },
+                {
+                    name: "Aquarium",
+                    img: "image/fish.png",
+                    link: "product.html"
+                },
+                {
+                    name: "Water Conditioner",
+                    img: "image/fish.png",
+                    link: "product.html"
+                }
+            ],
+            Reptiles: [
+                {
+                    name: "Scorpion Habitat",
+                    img: "image/scorpian.png",
+                    link: "product.html"
+                },
+                {
+                    name: "Heat Lamp",
+                    img: "image/scorpian.png",
+                    link: "product.html"
+                },
+                {
+                    name: "Reptile Food",
+                    img: "image/scorpian.png",
+                    link: "product.html"
+                }
+            ]
+        };
+
+        function renderProducts() {
+            const category = localStorage.getItem('selectedCategory') || 'Bird';
+            const grid = document.getElementById('product-grid');
+            const title = document.getElementById('products-title');
+            title.textContent = category + " Products";
+            grid.innerHTML = '';
+            (productsData[category] || []).forEach(product => {
+                const a = document.createElement('a');
+                a.href = product.link;
+                a.className = "product-link";
+                a.innerHTML = `
+                    <div class="product-card">
+                        <img src="${product.img}" alt="${product.name}" class="product-img">
+                        <button class="product-btn">${product.name}</button>
+                    </div>
+                `;
+                grid.appendChild(a);
+            });
+        }
+
+        renderProducts();
     </script>
 </body>
 </html>

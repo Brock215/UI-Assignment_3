@@ -17,11 +17,11 @@
             <span></span>
         </div>
         <a href="index.html">Home</a>
-        <a href="#">About</a>
-        <a href="products.html">Bird</a>
-        <a href="products.html">Fish</a>
-        <a href="products.html">Reptiles</a>
-        <a href="#">Contact</a>
+        <a href="#" id="about-link">About</a>
+        <a href="products.html" onclick="setCategory('Bird')">Bird</a>
+        <a href="products.html" onclick="setCategory('Fish')">Fish</a>
+        <a href="products.html" onclick="setCategory('Reptiles')">Reptiles</a>
+        <a href="#" id="contact-link">Contact</a>
     </nav>
     <div class="overlay"></div>
 
@@ -185,6 +185,10 @@
         document.getElementById('checkout-btn').onclick = function() {
             window.location.href = "payment.html";
         };
+
+        function setCategory(category) {
+            localStorage.setItem('selectedCategory', category);
+        }
 
         renderCart();
     </script>

@@ -58,10 +58,13 @@
             <h2>Categories</h2><hr>
             <div class="category-slider">
                 <div class="category">
-                    <a href="products.html"><img src="image/bird.png" alt="Bird"></a>
+                    <a href="products.html" onclick="setCategory('Bird')"><img src="image/bird.png" alt="Bird"></a>
                 </div>
                 <div class="category">
-                    <a href="products.html"><img src="image/fish.png" alt="Fish"></a>
+                    <a href="products.html" onclick="setCategory('Fish')"><img src="image/fish.png" alt="Fish"></a>
+                </div>
+                <div class="category">
+                    <a href="products.html" onclick="setCategory('Reptiles')"><img src="image/scorpian.png" alt="Reptiles"></a>
                 </div>
             </div>
         </section>
@@ -98,4 +101,8 @@
         sidenav.style.width = '40%'; // Open the side navigation
         overlay.style.opacity = "0.5";
     });
+
+    function setCategory(category) {
+        localStorage.setItem('selectedCategory', category);
+    }
 </script>
