@@ -18,9 +18,9 @@
         </div>
         <a href="index.html">Home</a>
         <a href="search.html" id="search-link">Search</a>
-        <a href="products.html" onclick="setCategory('Bird'); return false;">Bird</a>
-        <a href="products.html" onclick="setCategory('Fish'); return false;">Fish</a>
-        <a href="products.html" onclick="setCategory('Reptiles'); return false;">Reptiles</a>
+        <a href="products.html" onclick="setCategory('Bird')">Bird</a>
+        <a href="products.html" onclick="setCategory('Fish')">Fish</a>
+        <a href="products.html" onclick="setCategory('Reptiles')">Reptiles</a>
         <a href="#" id="contact-link">Contact</a>
     </nav>
     <div class="overlay"></div>
@@ -170,7 +170,6 @@
 
         function setCategory(category) {
             localStorage.setItem('selectedCategory', category);
-            window.location.href = "products.html";
         }
 
         renderProducts();
