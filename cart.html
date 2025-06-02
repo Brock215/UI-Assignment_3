@@ -132,20 +132,25 @@
                     img: "image/fish/gravel.png",
                     desc: "Decorative gravel for aquariums."
                 },
-                "Scorpion Habitat": {
-                    price: 25.00,
-                    img: "image/scorpian.png",
-                    desc: "Safe habitat for your scorpion."
+                "Hammock": {
+                    price: 14.00,
+                    img: "image/reptiles/hammock.png",
+                    desc: "A comfy hammock for your reptile to lounge on."
                 },
                 "Heat Lamp": {
                     price: 18.00,
-                    img: "image/scorpian.png",
+                    img: "image/reptiles/heatlamp.png",
                     desc: "Provides warmth for reptiles."
                 },
                 "Reptile Food": {
                     price: 10.00,
-                    img: "image/scorpian.png",
+                    img: "image/reptiles/reptilefood.png",
                     desc: "Nutritious food for reptiles."
+                },
+                "Rock": {
+                    price: 8.00,
+                    img: "image/reptiles/rock.png",
+                    desc: "A natural rock for basking and climbing."
                 }
             };
 
@@ -153,11 +158,16 @@
             if (keys.length === 0) {
                 cartItems.innerHTML = "<div class='cart-empty'>Your cart is empty.</div>";
                 cartTotal.textContent = "$0.00 AUD";
+                // Store subtotal and quantity as 0 for payment page
+                localStorage.setItem('cartSubtotal', "0.00");
+                localStorage.setItem('cartQty', "0");
                 return;
             }
 
+            let qtySum = 0;
             keys.forEach(product => {
                 const qty = cart[product];
+                qtySum += qty;
                 const data = productData[product] || { price: 0, img: "", desc: "" };
                 const itemTotal = data.price * qty;
                 total += itemTotal;
@@ -220,6 +230,9 @@
             });
 
             cartTotal.textContent = `$${total.toFixed(2)} AUD`;
+            // Store subtotal and quantity for payment page
+            localStorage.setItem('cartSubtotal', total.toFixed(2));
+            localStorage.setItem('cartQty', qtySum.toString());
         }
 
         document.getElementById('checkout-btn').onclick = function() {
