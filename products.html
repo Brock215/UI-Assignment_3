@@ -95,17 +95,21 @@
             Fish: [
                 {
                     name: "Fish Food",
-                    img: "image/fishfood.png",
+                    img: "image/fish/fishfood.png",
                     link: "product.html"
                 },
                 {
                     name: "Aquarium",
-                    img: "image/fish.png",
+                    img: "image/fish/fishtank.png",
                     link: "product.html"
                 },
                 {
-                    name: "Water Conditioner",
-                    img: "image/fish.png",
+                    name: "Water Filter",
+                    img: "image/fish/filter.png",
+                    link: "product.html"
+                },{
+                    name: "Aquarium Gravel",
+                    img: "image/fish/gravel.png",
                     link: "product.html"
                 }
             ],
@@ -136,7 +140,7 @@
             grid.innerHTML = '';
             (productsData[category] || []).forEach(product => {
                 const a = document.createElement('a');
-                a.href = product.link;
+                a.href = "product.html";
                 a.className = "product-link";
                 a.innerHTML = `
                     <div class="product-card">
@@ -144,6 +148,11 @@
                         <button class="product-btn">${product.name}</button>
                     </div>
                 `;
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.setItem('selectedProduct', JSON.stringify(product));
+                    window.location.href = "product.html";
+                });
                 grid.appendChild(a);
             });
         }
