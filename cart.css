@@ -245,7 +245,7 @@ footer {
     flex-direction: column;
     text-align: center;
     z-index: 1001;
-    transition: 0.3s;
+    transition: none;
 }
 .sidenav a {
     background-color: primary-color;
@@ -272,7 +272,7 @@ footer {
     opacity: 0;
     z-index: 1000;
     display: none;
-    transition: opacity 0.3s;
+    transition: none;
 }
 @media (max-width: 600px) {
     .cart-main {
