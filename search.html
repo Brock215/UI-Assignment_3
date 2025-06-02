@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <title>Search | Totally Reptiles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bird Products | Totally Reptiles</title>
-    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="colours.css">
     <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Side Navigation -->
     <nav class="sidenav">
         <div class="menu-close-btn">
             <span></span>
@@ -25,7 +25,6 @@
     </nav>
     <div class="overlay"></div>
 
-    <!-- Header -->
     <header>
         <a class="logo" href="index.html">Totally Reptiles</a>
         <div class="menu-icon" tabindex="0">
@@ -35,15 +34,17 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <h1 id="products-title">Products</h1>
-        <div class="product-grid" id="product-grid">
-            <!-- Products will be rendered here -->
+    <main class="search-main">
+        <h1>Search Products</h1>
+        <form class="search-form">
+            <input type="text" class="search-input" placeholder="Search for products..." />
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+        <div class="search-results" id="search-results">
+            <!-- Results will appear here -->
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer-bar">
         <div class="footer-content">
             <div class="footer-section">
@@ -55,25 +56,7 @@
             </div>
         </div>
     </footer>
-
     <script>
-        // JavaScript for the menu icon toggle
-        const menuIcon = document.querySelector('.menu-icon');
-        const sidenav = document.querySelector('.sidenav');
-        const closeBtn = document.querySelector('.menu-close-btn');
-        const overlay = document.querySelector('.overlay');
-
-        closeBtn.addEventListener('click', () => {
-            sidenav.style.width = '0'; // Close the side navigation
-            overlay.style.opacity = "1"; // Reset overlay opacity
-        });
-
-        menuIcon.addEventListener('click', () => {
-            sidenav.style.width = '40%'; // Open the side navigation
-            overlay.style.opacity = "0.5";
-        });
-
-        // Product data for each category
         const productsData = {
             Bird: [
                 {
@@ -143,37 +126,58 @@
             ]
         };
 
-        function renderProducts() {
-            const category = localStorage.getItem('selectedCategory') || 'Bird';
-            const grid = document.getElementById('product-grid');
-            const title = document.getElementById('products-title');
-            title.textContent = category + " Products";
-            grid.innerHTML = '';
-            (productsData[category] || []).forEach(product => {
-                const a = document.createElement('a');
-                a.href = "product.html";
-                a.className = "product-link";
-                a.innerHTML = `
-                    <div class="product-card">
-                        <img src="${product.img}" alt="${product.name}" class="product-img">
-                        <button class="product-btn">${product.name}</button>
-                    </div>
-                `;
-                a.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    localStorage.setItem('selectedProduct', JSON.stringify(product));
-                    window.location.href = "product.html";
-                });
-                grid.appendChild(a);
-            });
+        // Sidenav toggle code (copy from other pages)
+        const menuIcon = document.querySelector('.menu-icon');
+        const sidenav = document.querySelector('.sidenav');
+        const closeBtn = document.querySelector('.menu-close-btn');
+        const overlay = document.querySelector('.overlay');
+
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "1";
+        });
+
+        menuIcon.addEventListener('click', () => {
+            sidenav.style.width = '40%';
+            overlay.style.opacity = "0.5";
+        });
+
+        // Search functionality
+        const searchForm = document.querySelector('.search-form');
+        const searchInput = document.querySelector('.search-input');
+        const resultsContainer = document.getElementById('search-results');
+
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = searchInput.value.toLowerCase();
+            displayResults(query);
+        });
+
+        function displayResults(query = "") {
+            const allProducts = [
+                ...productsData.Bird,
+                ...productsData.Fish,
+                ...productsData.Reptiles
+            ];
+
+            const results = allProducts.filter(product => 
+                product.name.toLowerCase().includes(query)
+            );
+
+            resultsContainer.innerHTML = results.map(product => `
+                <div class="product-card">
+                    <img src="${product.img}" alt="${product.name}">
+                    <button>${product.name}</button>
+                </div>
+            `).join('');
         }
+
+        // Display all products by default
+        displayResults();
 
         function setCategory(category) {
             localStorage.setItem('selectedCategory', category);
-            window.location.href = "products.html";
         }
-
-        renderProducts();
     </script>
 </body>
 </html>

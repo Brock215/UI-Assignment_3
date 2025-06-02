@@ -110,8 +110,8 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: var(--footer-color);
-    color: white;
+    background-color: #e0e0e0; /* Grey background */
+    color: black; /* Adjust text color for contrast */
 }
 
 .sidenav {

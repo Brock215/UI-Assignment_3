@@ -172,12 +172,10 @@ footer {
     border-radius: 0;
 }
 .product-img {
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    height: auto; /* Ensure the height is calculated based on the aspect ratio */
     object-fit: cover;
-    margin-bottom: 1rem;
-    border: 2px solid #1976d2;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 .product-link,
 .product-link:visited,

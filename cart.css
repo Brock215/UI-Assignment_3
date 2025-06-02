@@ -49,7 +49,7 @@ h1 {
 }
 .cart-img {
     width: 90px;
-    height: 90px;
+    height: 90px; /* Ensure the image is square */
     object-fit: cover;
     border-radius: 10px;
     border: 1px solid #bdbdbd;
