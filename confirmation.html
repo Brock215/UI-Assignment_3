@@ -37,7 +37,7 @@
     <main class="confirmation-main">
         <h1 class="confirmation-title">Order confirmed</h1>
         <div class="confirmation-message">
-            Thank you for Shopping with totally Reptiles<br>
+            Thank you for Shopping with Totally Reptiles<br>
             Your order number is <span class="order-number">#123445</span>
         </div>
         <div class="confirmation-table">
@@ -69,88 +69,87 @@
     </footer>
 
     <script>
-        // Sidenav toggle
         const menuIcon = document.querySelector('.menu-icon');
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
-        closeBtn.addEventListener('click', () => {
-            sidenav.style.width = '0';
-            overlay.style.opacity = "1";
-        });
+        if (menuIcon) {
+            menuIcon.addEventListener('click', () => {
+                sidenav.style.width = '40%';
+                overlay.style.opacity = "0.5";
+                overlay.style.display = "block";
+            });
+        }
 
-        menuIcon.addEventListener('click', () => {
-            sidenav.style.width = '40%';
-            overlay.style.opacity = "0.5";
-        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                sidenav.style.width = '0';
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
 
-        overlay.addEventListener('click', () => {
-            sidenav.style.width = '0';
-            overlay.style.opacity = "1";
-        });
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidenav.style.width = '0';
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
 
-        // Confirmation table rendering (static demo data for image match)
         function renderConfirmation() {
-            const items = [
-                {
-                    name: "Fish Food",
-                    price: 12.00,
-                    img: "image/fishfood-tank.png",
-                    desc: "flake fish food formulated for daily feeding of all tropical fish.",
-                    qty: 1
-                },
-                {
-                    name: "Fish Food",
-                    price: 12.00,
-                    img: "image/bird.png",
-                    desc: "flake fish food formulated for daily feeding of all tropical fish.",
-                    qty: 1
-                },
-                {
-                    name: "Fish Food",
-                    price: 12.00,
-                    img: "image/fishfood-jar.png",
-                    desc: "flake fish food formulated for daily feeding of all tropical fish.",
-                    qty: 1
-                }
-            ];
+            const cart = JSON.parse(localStorage.getItem('cart')) || {};
+            const productData = {
+                "Bird Cage": { price: 12.00, img: "image/birds/birdcage.png" },
+                "Bird Food": { price: 8.00, img: "image/birds/birdfood.png" },
+                "Perch": { price: 6.00, img: "image/birds/perch.png" },
+                "Toy": { price: 5.00, img: "image/birds/toy.png" },
+                "Fish Food": { price: 12.00, img: "image/fish/fishfood.png" },
+                "Aquarium": { price: 40.00, img: "image/fish/fishtank.png" },
+                "Water Filter": { price: 15.00, img: "image/fish/filter.png" },
+                "Aquarium Gravel": { price: 5.00, img: "image/fish/gravel.png" },
+                "Hammock": { price: 14.00, img: "image/reptiles/hammock.png" },
+                "Heat Lamp": { price: 18.00, img: "image/reptiles/heatlamp.png" },
+                "Reptile Food": { price: 10.00, img: "image/reptiles/reptilefood.png" },
+                "Rock": { price: 8.00, img: "image/reptiles/rock.png" }
+            };
+
             let total = 0;
             const container = document.getElementById('confirmation-items');
             container.innerHTML = '';
-            items.forEach(item => {
-                total += item.price * item.qty;
+
+            Object.entries(cart).forEach(([product, qty]) => {
+                const data = productData[product];
+                if (!data) return;
+
                 const row = document.createElement('div');
                 row.className = "confirmation-row";
 
-                // Product cell
                 const prodCell = document.createElement('div');
                 prodCell.className = "confirmation-col-product";
                 const img = document.createElement('img');
-                img.src = item.img;
-                img.alt = item.name;
+                img.src = data.img;
+                img.alt = product;
                 img.className = "confirmation-img";
                 const prodInfo = document.createElement('div');
                 prodInfo.className = "confirmation-prod-info";
-                prodInfo.innerHTML = `<div class="confirmation-prod-title">${item.name}</div>
-                    <div class="confirmation-prod-price">$${item.price.toFixed(2)} AUD</div>
-                    <div class="confirmation-prod-desc">${item.desc}</div>`;
+                prodInfo.innerHTML = `
+                    <div class="confirmation-prod-title">${product}</div>
+                    <div class="confirmation-prod-price">$${data.price.toFixed(2)} AUD</div>
+                `;
                 prodCell.appendChild(img);
                 prodCell.appendChild(prodInfo);
 
-                // Quantity cell
                 const qtyCell = document.createElement('div');
                 qtyCell.className = "confirmation-col-qty";
-                qtyCell.innerHTML = `
-                    <button class="confirmation-qty-btn" disabled>-</button>
-                    <span class="confirmation-qty-value">${item.qty}</span>
-                    <button class="confirmation-qty-btn" disabled>+</button>
-                `;
+                qtyCell.textContent = qty;
 
-                // Total cell
                 const totalCell = document.createElement('div');
                 totalCell.className = "confirmation-col-total";
-                totalCell.textContent = `$${(item.price * item.qty).toFixed(2)} AUD`;
+                const itemTotal = data.price * qty;
+                total += itemTotal;
+                totalCell.textContent = `$${itemTotal.toFixed(2)} AUD`;
 
                 row.appendChild(prodCell);
                 row.appendChild(qtyCell);
@@ -158,8 +157,10 @@
 
                 container.appendChild(row);
             });
+
             document.getElementById('confirmation-total').textContent = `$${total.toFixed(2)} AUD`;
         }
+
         renderConfirmation();
 
         function setCategory(category) {

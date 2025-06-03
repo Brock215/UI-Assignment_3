@@ -9,6 +9,28 @@
     <link rel="stylesheet" href="fonts.css">
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a class="logo" href="index.html">Totally Reptiles</a>
+    </header>
+
+    <!-- Traditional Header for Larger Screens -->
+    <header class="desktop-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html" onclick="setCategory('Fish')">Fish Products</a>
+            <a href="products.html" onclick="setCategory('Bird')">Bird Products</a>
+            <a href="search.html"><img src="image/search.png" alt="Search" class="search-icon"></a>
+            <a href="cart.html"><img src="image/cart.png" alt="Cart" class="cart-icon"></a>
+        </nav>
+    </header>
+
     <!-- Side Navigation -->
     <nav class="sidenav">
         <div class="menu-close-btn">
@@ -24,16 +46,6 @@
         <a href="#" id="contact-link">Contact</a>
     </nav>
     <div class="overlay"></div>
-
-    <!-- Header -->
-    <header>
-        <a class="logo" href="index.html">Totally Reptiles</a>
-        <div class="menu-icon" tabindex="0">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </header>
 
     <!-- Main Content -->
     <main>
@@ -58,19 +70,27 @@
 
     <script>
         // JavaScript for the menu icon toggle
-        const menuIcon = document.querySelector('.menu-icon');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn'); // Corrected selector
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
         closeBtn.addEventListener('click', () => {
             sidenav.style.width = '0'; // Close the side navigation
-            overlay.style.opacity = "1"; // Reset overlay opacity
+            overlay.style.opacity = "0"; // Reset overlay opacity
+            overlay.style.display = "none";
         });
 
-        menuIcon.addEventListener('click', () => {
+        menuToggleBtn.addEventListener('click', () => {
             sidenav.style.width = '40%'; // Open the side navigation
             overlay.style.opacity = "0.5";
+            overlay.style.display = "block";
+        });
+
+        overlay.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
         });
 
         // Product data for each category
@@ -151,7 +171,7 @@
             grid.innerHTML = '';
             (productsData[category] || []).forEach(product => {
                 const a = document.createElement('a');
-                a.href = "product.html";
+                a.href = product.link;
                 a.className = "product-link";
                 a.innerHTML = `
                     <div class="product-card">
@@ -162,7 +182,7 @@
                 a.addEventListener('click', function(e) {
                     e.preventDefault();
                     localStorage.setItem('selectedProduct', JSON.stringify(product));
-                    window.location.href = "product.html";
+                    window.location.href = product.link;
                 });
                 grid.appendChild(a);
             });
@@ -172,6 +192,7 @@
             localStorage.setItem('selectedCategory', category);
         }
 
+        // Ensure products are rendered on page load
         renderProducts();
     </script>
 </body>

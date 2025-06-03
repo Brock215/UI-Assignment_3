@@ -10,6 +10,28 @@
     <link rel="stylesheet" href="payment.css">
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a class="logo" href="index.html">Totally Reptiles</a>
+    </header>
+
+    <!-- Traditional Header for Larger Screens -->
+    <header class="desktop-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html" onclick="setCategory('Fish')">Fish Products</a>
+            <a href="products.html" onclick="setCategory('Bird')">Bird Products</a>
+            <a href="search.html"><img src="image/search.png" alt="Search" class="search-icon"></a>
+            <a href="cart.html"><img src="image/cart.png" alt="Cart" class="cart-icon"></a>
+        </nav>
+    </header>
+
     <nav class="sidenav">
         <div class="menu-close-btn">
             <span></span>
@@ -24,15 +46,6 @@
         <a href="#" id="contact-link">Contact</a>
     </nav>
     <div class="overlay"></div>
-
-    <header>
-        <a class="logo" href="index.html">Totally Reptiles</a>
-        <div class="menu-icon" tabindex="0">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </header>
 
     <main class="payment-main">
         <h1>Payment</h1>
@@ -87,7 +100,7 @@
                     <span id="summary-total">$0.00 AUD</span>
                 </div>
             </div>
-            <button type="submit" class="pay-btn">Pay</button>
+            <button type="button" class="pay-btn" onclick="redirectToConfirmation()">Pay</button>
         </form>
     </main>
 
@@ -104,32 +117,37 @@
     </footer>
 
     <script>
-        // Sidenav toggle
-        const menuIcon = document.querySelector('.menu-icon');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn');
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
-        closeBtn.addEventListener('click', () => {
-            sidenav.style.width = '0';
-            overlay.style.opacity = "1";
-        });
+        if (menuToggleBtn) {
+            menuToggleBtn.addEventListener('click', () => {
+                sidenav.style.width = '40%';
+                overlay.style.opacity = "0.5";
+                overlay.style.display = "block";
+            });
+        }
 
-        menuIcon.addEventListener('click', () => {
-            sidenav.style.width = '40%';
-            overlay.style.opacity = "0.5";
-        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                sidenav.style.width = '0';
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
 
-        overlay.addEventListener('click', () => {
-            sidenav.style.width = '0';
-            overlay.style.opacity = "1";
-        });
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidenav.style.width = '0';
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
 
-        // Payment summary logic
         function updateSummary() {
-            let cart = JSON.parse(localStorage.getItem('cart')) || {};
-            let qty = 0;
-            let total = 0;
+            const cart = JSON.parse(localStorage.getItem('cart')) || {};
             const productData = {
                 "Bird Cage": { price: 12.00 },
                 "Bird Food": { price: 8.00 },
@@ -144,22 +162,27 @@
                 "Reptile Food": { price: 10.00 },
                 "Rock": { price: 8.00 }
             };
-            Object.keys(cart).forEach(product => {
-                const count = cart[product];
+
+            let qty = 0;
+            let total = 0;
+
+            Object.entries(cart).forEach(([product, count]) => {
+                const price = productData[product]?.price || 0;
                 qty += count;
-                const price = productData[product] ? productData[product].price : 0;
                 total += price * count;
             });
+
             document.getElementById('summary-qty').textContent = qty;
             document.getElementById('subtotal-value').textContent = `$${total.toFixed(2)} AUD`;
             document.getElementById('summary-total').textContent = `$${total.toFixed(2)} AUD`;
         }
-        updateSummary();
 
-        document.querySelector('.payment-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Ensure the cart data is updated when the page loads
+        document.addEventListener('DOMContentLoaded', updateSummary);
+
+        function redirectToConfirmation() {
             window.location.href = "confirmation.html";
-        });
+        }
 
         function setCategory(category) {
             localStorage.setItem('selectedCategory', category);
