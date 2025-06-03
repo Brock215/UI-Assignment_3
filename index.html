@@ -9,100 +9,119 @@
     <link rel="stylesheet" href="fonts.css"> <!-- Font styles CSS file -->
 </head>
 <body>
-        <!-- Side Navigation -->
-        <nav class="sidenav">
-            <div class="menu-close-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a class="logo" href="index.html">Totally Reptiles</a>
+    </header>
+
+    <!-- Traditional Header for Larger Screens -->
+    <header class="desktop-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <nav class="desktop-nav">
             <a href="index.html">Home</a>
-            <a href="#">About</a>
-            <a href="products.html">Bird</a>
-            <a href="products.html">Fish</a>
-            <a href="products.html">Reptiles</a>
-            <a href="#">Contact</a>
+            <a href="products.html" onclick="setCategory('Fish')">Fish Products</a>
+            <a href="products.html" onclick="setCategory('Bird')">Bird Products</a>
+            <a href="cart.html"><img src="image/cart-icon.png" alt="Cart" class="cart-icon"></a>
         </nav>
-        <div class="overlay">
-        <!-- Header -->
-        <header>
-            <div class="logo" href="#">Totally Reptiles</div>
-            <div class="menu-icon" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-        </header>
+    </header>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <img src="image/scorpian.png" alt="Scorpion">
-        </section>
+    <!-- Hamburger Menu for Smaller Screens -->
+    <nav class="sidenav">
+        <div class="menu-close-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="products.html" onclick="setCategory('Bird')">Bird</a>
+        <a href="products.html" onclick="setCategory('Fish')">Fish</a>
+        <a href="products.html" onclick="setCategory('Reptiles')">Reptiles</a>
+        <a href="#">Contact</a>
+    </nav>
+    <div class="overlay"></div>
 
-        <!-- About Section -->
-        <section class="about">
-            <h2>About Us</h2>
-            <p>
-                Totally Reptiles is a medium-sized family-owned business located in Greensborough & now Kangaroo Flat.
-            </p>
-            <p>
-                Specialising in a wide range of Reptiles, Birds & Fish such as lizards, snakes, frogs, geckos, turtles, birds (ranging from small parrots to large), fish (from goldfish through to Australian native fish), spiders & scorpions including all the needs and accessories for these animals.
-            </p>
-            <p>
-                We pride ourselves in delivering quality and 100% customer service as a family business.
-            </p>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="image/scorpian.png" alt="Scorpion">
+    </section>
 
-        <!-- Categories Section -->
-        <section class="categories">
-            <h2>Categories</h2><hr>
-            <div class="category-slider">
-                <div class="category">
-                    <a href="products.html" onclick="setCategory('Bird')"><img src="image/bird.png" alt="Bird"></a>
-                </div>
-                <div class="category">
-                    <a href="products.html" onclick="setCategory('Fish')"><img src="image/fish.png" alt="Fish"></a>
-                </div>
-                <div class="category">
-                    <a href="products.html" onclick="setCategory('Reptiles')"><img src="image/scorpian.png" alt="Reptiles"></a>
-                </div>
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Us</h2>
+        <p>
+            Totally Reptiles is a medium-sized family-owned business located in Greensborough & now Kangaroo Flat.
+        </p>
+        <p>
+            Specialising in a wide range of Reptiles, Birds & Fish such as lizards, snakes, frogs, geckos, turtles, birds (ranging from small parrots to large), fish (from goldfish through to Australian native fish), spiders & scorpions including all the needs and accessories for these animals.
+        </p>
+        <p>
+            We pride ourselves in delivering quality and 100% customer service as a family business.
+        </p>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2>Categories</h2><hr>
+        <div class="category-slider">
+            <div class="category">
+                <a href="products.html" onclick="setCategory('Bird')"><img src="image/bird.png" alt="Bird"></a>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div div class="footer-content">
-                <div class="footer-section">
-                <h2>Contact Us</h2>
-                <p>Phone: 9435 2152</p>
-                </div>
-                <div class="footer-section">
-                <h2>Categories</h2>
-                </div>
+            <div class="category">
+                <a href="products.html" onclick="setCategory('Fish')"><img src="image/fish.png" alt="Fish"></a>
             </div>
-        </footer>
-    </div>
+            <div class="category">
+                <a href="products.html" onclick="setCategory('Reptiles')"><img src="image/scorpian.png" alt="Reptiles"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div div class="footer-content">
+            <div class="footer-section">
+            <h2>Contact Us</h2>
+            <p>Phone: 9435 2152</p>
+            </div>
+            <div class="footer-section">
+            <h2>Categories</h2>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn');
+        const menuIcon = document.querySelector('.menu-icon');
+        const sidenav = document.querySelector('.sidenav');
+        const closeBtn = document.querySelector('.menu-close-btn');
+        const overlay = document.querySelector('.overlay');
+
+        menuToggleBtn.addEventListener('click', () => {
+            sidenav.style.width = '70%'; // Open the side navigation
+            overlay.style.opacity = "0.5";
+            overlay.style.display = "block";
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
+        });
+
+        overlay.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
+        });
+
+        function setCategory(category) {
+            localStorage.setItem('selectedCategory', category);
+        }
+    </script>
 </body>
 </html>
-<script >
-
-    // JavaScript for the menu icon toggle
-    const menuIcon = document.querySelector('.menu-icon');
-    const sidenav = document.querySelector('.sidenav');
-    const closeBtn = document.querySelector('.menu-close-btn');
-    const overlay = document.querySelector('.overlay');
-
-    closeBtn.addEventListener('click', () => {
-        sidenav.style.width = '0'; // Close the side navigation
-        overlay.style.opacity = "1"; // Reset overlay opacity
-    });
-
-    menuIcon.addEventListener('click', () => {
-        sidenav.style.width = '40%'; // Open the side navigation
-        overlay.style.opacity = "0.5";
-    });
-
-    function setCategory(category) {
-        localStorage.setItem('selectedCategory', category);
-    }
-</script>
