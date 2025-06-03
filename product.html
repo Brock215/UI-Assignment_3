@@ -9,14 +9,26 @@
     <link rel="stylesheet" href="fonts.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo">Totally Reptiles</a>
-        <div class="menu-icon" tabindex="0">
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="menu-toggle-btn">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
+        <a class="logo" href="index.html">Totally Reptiles</a>
+    </header>
+
+    <!-- Traditional Header for Larger Screens -->
+    <header class="desktop-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html" onclick="setCategory('Fish')">Fish Products</a>
+            <a href="products.html" onclick="setCategory('Bird')">Bird Products</a>
+            <a href="search.html"><img src="image/search.png" alt="Search" class="search-icon"></a>
+            <a href="cart.html"><img src="image/cart.png" alt="Cart" class="cart-icon"></a>
+        </nav>
     </header>
 
     <!-- Side Navigation -->
@@ -35,8 +47,8 @@
     </nav>
     <div class="overlay"></div>
 
-    <!-- Product Detail -->
-    <main class="product-detail">
+    <!-- Product Detail for Mobile -->
+    <main class="product-detail mobile-version">
         <div class="product-image-container">
             <img src="image/bird.png" alt="Bird Cage" class="product-image-large" id="product-image">
         </div>
@@ -54,6 +66,31 @@
                 </div>
                 <a href="cart.html" class="add-to-cart-btn" id="add-to-cart-link">Add to Cart</a>
             </div>
+        </div>
+    </main>
+
+    <!-- Product Detail for Desktop -->
+    <main class="product-detail desktop-version">
+        <div class="product-image-container">
+            <img src="image/bird.png" alt="Bird Cage" class="product-image-large" id="product-image-desktop">
+        </div>
+        <div class="product-info">
+            <h1 class="product-title" id="product-title-desktop">Bird Cage</h1>
+            <div class="product-price" id="product-price-desktop">$12.00 AUD</div>
+            <div class="product-actions">
+                <div class="product-actions-inner">
+                    <a href="cart.html" class="add-to-cart-btn" id="add-to-cart-link-desktop">Add to Cart</a>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" aria-label="Decrease quantity">-</button>
+                        <span class="quantity-value">1</span>
+                        <button class="quantity-btn" aria-label="Increase quantity">+</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="product-description" id="product-description-desktop">
+            A sleek, black metal birdcage with a domed top and vertical bars. Features include a wooden perch, a hinged front door with a latch, and a removable plastic tray for easy cleaning. Minimalist and professional—perfect for showcasing on an e-commerce site.
         </div>
     </main>
 
@@ -137,14 +174,25 @@
                     product = {
                         name: parsed.name || defaultProduct.name,
                         img: parsed.img || defaultProduct.img,
-                        price: defaultProduct.price,
-                        description: defaultProduct.description
+                        price: parsed.price || defaultProduct.price,
+                        description: parsed.description || defaultProduct.description
                     };
                 } catch {}
             }
+
+            // Populate mobile version
             document.getElementById('product-title').textContent = product.name;
             document.getElementById('product-image').src = product.img;
             document.getElementById('product-image').alt = product.name;
+            document.getElementById('product-price').textContent = product.price;
+            document.getElementById('product-description').textContent = product.description;
+
+            // Populate desktop version
+            document.getElementById('product-title-desktop').textContent = product.name;
+            document.getElementById('product-image-desktop').src = product.img;
+            document.getElementById('product-image-desktop').alt = product.name;
+            document.getElementById('product-price-desktop').textContent = product.price;
+            document.getElementById('product-description-desktop').textContent = product.description;
         });
     </script>
 </body>

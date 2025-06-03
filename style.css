@@ -130,13 +130,12 @@ footer {
     display:flex;
     flex-direction: column;
     text-align: center;
-    z-index: 1; /* makes it the top element */
-
+    z-index: 1001; /* makes it the top element */
+    transition: width 0.3s ease;
 }
 .sidenav a {
-    background-color: primary-color; 
-    padding-top: 20px;
-    padding-bottom: 20px;
+    background-color: var(--primary-color); 
+    padding: 20px;
     font-size: 1.5rem;
     cursor: pointer;
     text-decoration: none;
@@ -152,7 +151,16 @@ footer {
 
 }
 .overlay{
-    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    opacity: 0;
+    z-index: 1000;
+    display: none;
+    transition: opacity 0.3s ease;
 }
 
 header.desktop-header {
@@ -160,7 +168,7 @@ header.desktop-header {
 }
 
 .mobile-header {
-    display: none;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--primary-color);
@@ -186,6 +194,7 @@ header.desktop-header {
     height: 3px;
     background: black;
     border-radius: 2px;
+    transition: 0.3s;
 }
 
 .desktop-header {
