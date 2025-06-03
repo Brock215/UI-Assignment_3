@@ -150,13 +150,14 @@ footer {
 }
 .product-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     justify-items: center;
 }
+
 @media (max-width: 600px) {
     .product-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 .product-card {
@@ -176,6 +177,9 @@ footer {
     height: auto; /* Ensure the height is calculated based on the aspect ratio */
     object-fit: cover;
     border-radius: 8px;
+    border-style: solid;
+    border-color: #1976d2;
+    margin-bottom: 10px;
 }
 .product-link,
 .product-link:visited,
