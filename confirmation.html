@@ -24,14 +24,27 @@
         <a href="#" id="contact-link">Contact</a>
     </nav>
     <div class="overlay"></div>
-
-    <header>
+    
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <a class="logo" href="index.html">Totally Reptiles</a>
-        <div class="menu-icon" tabindex="0">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    </header>
+
+    <!-- Traditional Header for Larger Screens -->
+    <header class="desktop-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html" onclick="setCategory('Fish')">Fish Products</a>
+            <a href="products.html" onclick="setCategory('Bird')">Bird Products</a>
+            <a href="search.html"><img src="image/search.png" alt="Search" class="search-icon"></a>
+            <a href="cart.html"><img src="image/cart.png" alt="Cart" class="cart-icon"></a>
+        </nav>
     </header>
 
     <main class="confirmation-main">

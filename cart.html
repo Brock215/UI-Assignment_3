@@ -25,14 +25,26 @@
     </nav>
     <div class="overlay"></div>
 
-    <!-- Header -->
-    <header>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <a class="logo" href="index.html">Totally Reptiles</a>
-        <div class="menu-icon" tabindex="0">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    </header>
+
+    <!-- Traditional Header for Larger Screens -->
+    <header class="desktop-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html" onclick="setCategory('Fish')">Fish Products</a>
+            <a href="products.html" onclick="setCategory('Bird')">Bird Products</a>
+            <a href="search.html"><img src="image/search.png" alt="Search" class="search-icon"></a>
+            <a href="cart.html"><img src="image/cart.png" alt="Cart" class="cart-icon"></a>
+        </nav>
     </header>
 
     <main class="cart-main">
@@ -68,25 +80,34 @@
     </footer>
 
     <script>
-        const menuIcon = document.querySelector('.menu-icon');
+        const menuIcon = document.querySelector('.menu-toggle-btn'); // Corrected selector
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
-        function openNav() {
-            sidenav.style.width = '40%';
-            overlay.style.display = "block";
-            overlay.style.opacity = "0.5";
-        }
-        function closeNav() {
-            sidenav.style.width = '0';
-            overlay.style.opacity = "0";
-            overlay.style.display = "none";
+        if (menuIcon) {
+            menuIcon.addEventListener('click', () => {
+                sidenav.style.width = '40%';
+                overlay.style.display = "block";
+                overlay.style.opacity = "0.5";
+            });
         }
 
-        menuIcon.addEventListener('click', openNav);
-        closeBtn.addEventListener('click', closeNav);
-        overlay.addEventListener('click', closeNav);
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                sidenav.style.width = '0';
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidenav.style.width = '0';
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
 
         // Cart rendering
         function renderCart() {
