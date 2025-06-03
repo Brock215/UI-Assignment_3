@@ -232,7 +232,27 @@ footer {
     width: 90vw;
     max-width: 350px;
 }
+.menu-toggle-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 5px;
+}
 
+.menu-toggle-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: black;
+    border-radius: 2px;
+    transition: 0.3s;
+}
 .product-image-large {
     width: 260px;
     height: 260px;
@@ -334,7 +354,7 @@ footer {
     .mobile-version {
         display: none !important;
     }
-
+    
     .desktop-version {
         display: grid !important;
         grid-template-columns: 1fr 1fr;

@@ -109,20 +109,34 @@
 
     <script>
         // JavaScript for the menu icon toggle
-        const menuIcon = document.querySelector('.menu-icon');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn'); // Corrected selector
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
-        closeBtn.addEventListener('click', () => {
-            sidenav.style.width = '0'; // Close the side navigation
-            overlay.style.opacity = "1"; // Reset overlay opacity
-        });
+        if (menuToggleBtn) {
+            menuToggleBtn.addEventListener('click', () => {
+                sidenav.style.width = '70%'; // Open the side navigation
+                overlay.style.opacity = "0.5";
+                overlay.style.display = "block";
+            });
+        }
 
-        menuIcon.addEventListener('click', () => {
-            sidenav.style.width = '40%'; // Open the side navigation
-            overlay.style.opacity = "0.5";
-        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                sidenav.style.width = '0'; // Close the side navigation
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidenav.style.width = '0'; // Close the side navigation
+                overlay.style.opacity = "0";
+                overlay.style.display = "none";
+            });
+        }
 
         // Quantity selector functionality
         const quantityValue = document.querySelector('.quantity-value');    
@@ -140,21 +154,23 @@
 
         // Add to cart button functionality with localStorage
         const addToCartBtn = document.getElementById('add-to-cart-link');
-        addToCartBtn.addEventListener('click', function(e) {
-            const productName = document.querySelector('.product-title').textContent.trim();
-            const quantity = parseInt(document.querySelector('.quantity-value').textContent);
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', function(e) {
+                const productName = document.querySelector('.product-title').textContent.trim();
+                const quantity = parseInt(document.querySelector('.quantity-value').textContent);
 
-            let cart = JSON.parse(localStorage.getItem('cart')) || {};
+                let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-            if (cart[productName]) {
-                cart[productName] += quantity;
-            } else {
-                cart[productName] = quantity;
-            }
+                if (cart[productName]) {
+                    cart[productName] += quantity;
+                } else {
+                    cart[productName] = quantity;
+                }
 
-            localStorage.setItem('cart', JSON.stringify(cart));
-        });
-        
+                localStorage.setItem('cart', JSON.stringify(cart));
+            });
+        }
+
         function setCategory(category) {
             localStorage.setItem('selectedCategory', category);
         }
@@ -166,6 +182,7 @@
                 price: "$12.00 AUD",
                 description: "A sleek, black metal birdcage with a domed top and vertical bars. Features include a wooden perch, a hinged front door with a latch, and a removable plastic tray for easy cleaning. Minimalist and professional—perfect for showcasing on an e-commerce site."
             };
+
             let product = defaultProduct;
             const stored = localStorage.getItem('selectedProduct');
             if (stored) {
@@ -177,21 +194,23 @@
                         price: parsed.price || defaultProduct.price,
                         description: parsed.description || defaultProduct.description
                     };
-                } catch {}
+                } catch (error) {
+                    console.error("Error parsing selected product:", error);
+                }
             }
 
             // Populate mobile version
             document.getElementById('product-title').textContent = product.name;
             document.getElementById('product-image').src = product.img;
             document.getElementById('product-image').alt = product.name;
-            document.getElementById('product-price').textContent = product.price;
+            document.getElementById('product-price').textContent = product.price || "$0.00 AUD";
             document.getElementById('product-description').textContent = product.description;
 
             // Populate desktop version
             document.getElementById('product-title-desktop').textContent = product.name;
             document.getElementById('product-image-desktop').src = product.img;
             document.getElementById('product-image-desktop').alt = product.name;
-            document.getElementById('product-price-desktop').textContent = product.price;
+            document.getElementById('product-price-desktop').textContent = product.price || "$0.00 AUD";
             document.getElementById('product-description-desktop').textContent = product.description;
         });
     </script>
