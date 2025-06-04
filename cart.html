@@ -80,34 +80,25 @@
     </footer>
 
     <script>
-        const menuIcon = document.querySelector('.menu-toggle-btn'); // Corrected selector
+        const menuIcon = document.querySelector('.menu-icon');
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
-        if (menuIcon) {
-            menuIcon.addEventListener('click', () => {
-                sidenav.style.width = '40%';
-                overlay.style.display = "block";
-                overlay.style.opacity = "0.5";
-            });
+        function openNav() {
+            sidenav.style.width = '40%';
+            overlay.style.display = "block";
+            overlay.style.opacity = "0.5";
+        }
+        function closeNav() {
+            sidenav.style.width = '0';
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
         }
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                sidenav.style.width = '0';
-                overlay.style.opacity = "0";
-                overlay.style.display = "none";
-            });
-        }
-
-        if (overlay) {
-            overlay.addEventListener('click', () => {
-                sidenav.style.width = '0';
-                overlay.style.opacity = "0";
-                overlay.style.display = "none";
-            });
-        }
+        menuIcon.addEventListener('click', openNav);
+        closeBtn.addEventListener('click', closeNav);
+        overlay.addEventListener('click', closeNav);
 
         // Cart rendering
         function renderCart() {

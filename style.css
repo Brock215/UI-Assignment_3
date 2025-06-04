@@ -90,24 +90,50 @@ a:visited{
 
 .categories .category-slider {
     display: flex;
-    justify-content: flex-start; 
+    gap: 80px; /* Further increase gap to prevent overlap */
+    overflow: hidden; /* Hide overflowing content */
+    position: relative; /* Ensure proper positioning */
+}
+.category-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 20px; 
-    overflow-x: scroll; /* Allow horizontal scrolling */
+    will-change: transform; 
+    animation: scrolling 10s linear infinite;
 }
 
 
-/* Optional: Hide scrollbar for a cleaner look */
-.categories .category-slider::-webkit-scrollbar {
-    display: none;
+@keyframes scrolling {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%); /* Move left continuously with extra space */
+    }
 }
+
 .categories header{
     text-align: left;
 }
+.categories .category {
+    position: relative; /* Enable positioning for text overlay */
+}
+
 .categories .category img {
     width: 200px; 
     height: 300px; 
     object-fit: cover;
     border-radius: 10px;
+}
+
+.categories .category .category-label {
+    position: absolute; 
+    bottom: 20px; 
+    left: 40px; 
+    color: white; 
+    font-size: 8rem; 
+    font-weight: bold; 
 }
 
 footer {
@@ -233,8 +259,66 @@ header.desktop-header {
     object-fit: contain;
 }
 
+.categories > a {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+  border: #000 1px solid;
+}
+.categories > a:active {
+  top: 1px;
+}
+.categories > a:focus {
+  background: #000;
+  color: white;
+}
+
+
+.category-links{
+    display: flex;
+    margin-bottom: 10px;
+}
+.categories .category-links {
+    position: relative; /* Position relative to the parent container */
+    margin-top: 20px; /* Add margin to move links below the categories */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1000; /* Ensure links are above other elements */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+}
+.categories .category-links a {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: white;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+    color: black;
+}
+
+.categories .category-links a:active {
+    top: 1px;
+}
+
+.categories .category-links a:focus {
+    background: #000;
+    color: white;
+}
 /* desktop */
-@media (max-width: 1368px) and (max-height: 912px) {
+@media (min-width: 1368px) and (min-height: 912px) {
     .menu-icon, .sidenav, .overlay {
         display: none; /* Hide the hamburger menu */
     }
@@ -263,8 +347,10 @@ header.desktop-header {
     }
 
     .categories .category img {
-        width: 150px;
-        height: 150px;
+        width: 60vh;
+        height: 40vh;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     footer {
@@ -281,6 +367,13 @@ header.desktop-header {
 }
 /* mobile */
 @media (max-width: 768px) {
+    .categories .category img {
+        width: 400px; 
+        height: 250px; 
+        object-fit: cover;
+        border-radius: 10px;
+        margin-left: 20px; 
+    }
     .menu-icon, .sidenav, .overlay {
         display: flex; 
     }

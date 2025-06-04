@@ -69,17 +69,56 @@
     <!-- Categories Section -->
     <section class="categories">
         <h2>Categories</h2><hr>
+        
         <div class="category-slider">
-            <div class="category">
-                <a href="products.html" onclick="setCategory('Bird')"><img src="image/bird.png" alt="Bird"></a>
+            <div class="category-group">
+                <div class="category bird-category">
+                    <a href="products.html" onclick="setCategory('Bird')">
+                        <img src="image/bird.png" alt="Bird">
+                        <div class="category-label">Bird</div>
+                    </a>
+                </div>
+                <div class="category fish-category">
+                    <a href="products.html" onclick="setCategory('Fish')">
+                        <img src="image/fish.png" alt="Fish">
+                        <div class="category-label">Fish</div>
+                    </a>
+                </div>
+                <div class="category reptile-category">
+                    <a href="products.html" onclick="setCategory('Reptiles')">
+                        <img src="image/scorpian.png" alt="Reptiles">
+                        <div class="category-label">Reptile</div>
+                    </a>
+                </div>
             </div>
-            <div class="category">
-                <a href="products.html" onclick="setCategory('Fish')"><img src="image/fish.png" alt="Fish"></a>
+            <!-- Duplicate categories for seamless scrolling -->
+            <div class="category-group">
+                <div class="category">
+                    <a href="products.html" onclick="setCategory('Bird')">
+                        <img src="image/bird.png" alt="Bird">
+                        <div class="category-label">Bird</div>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="products.html" onclick="setCategory('Fish')">
+                        <img src="image/fish.png" alt="Fish">
+                        <div class="category-label">Fish</div>
+                    </a>
+                </div>
+                <div class="category">
+                    <a href="products.html" onclick="setCategory('Reptiles')">
+                        <img src="image/scorpian.png" alt="Reptiles">
+                        <div class="category-label">Reptiles</div>
+                    </a>
+                </div>
             </div>
-            <div class="category">
-                <a href="products.html" onclick="setCategory('Reptiles')"><img src="image/scorpian.png" alt="Reptiles"></a>
-            </div>
+            
         </div>
+        <div class="category-links">
+                <a href="#bird-category"></a>
+                <a href="#fish-category"></a>
+                <a href="#reptile-category"></a>
+            </div>
     </section>
 
     <!-- Footer -->
