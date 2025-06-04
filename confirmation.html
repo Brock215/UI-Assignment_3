@@ -27,12 +27,13 @@
     
     <!-- Mobile Header -->
     <header class="mobile-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+
         <button class="menu-toggle-btn">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <a class="logo" href="index.html">Totally Reptiles</a>
     </header>
 
     <!-- Traditional Header for Larger Screens -->
@@ -82,34 +83,28 @@
     </footer>
 
     <script>
-        const menuIcon = document.querySelector('.menu-icon');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn'); // Correct selector for the hamburger menu button
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
-        if (menuIcon) {
-            menuIcon.addEventListener('click', () => {
-                sidenav.style.width = '40%';
-                overlay.style.opacity = "0.5";
-                overlay.style.display = "block";
-            });
-        }
+        menuToggleBtn.addEventListener('click', () => {
+            sidenav.style.width = '40%'; // Open the side navigation
+            overlay.style.opacity = "0.5";
+            overlay.style.display = "block";
+        });
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                sidenav.style.width = '0';
-                overlay.style.opacity = "0";
-                overlay.style.display = "none";
-            });
-        }
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
+        });
 
-        if (overlay) {
-            overlay.addEventListener('click', () => {
-                sidenav.style.width = '0';
-                overlay.style.opacity = "0";
-                overlay.style.display = "none";
-            });
-        }
+        overlay.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
+        });
 
         function renderConfirmation() {
             const cart = JSON.parse(localStorage.getItem('cart')) || {};

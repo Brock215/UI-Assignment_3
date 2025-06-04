@@ -45,10 +45,9 @@ a:visited{
 .menu-icon span {
     display: block;
     height: 2px;
-    width: 60px;     
+    width: 60px;
     background: black;
     border-radius: 2px;
-    transition: 0.3s;
 }
 
 .menu-close-btn {
@@ -64,13 +63,17 @@ a:visited{
     margin-right: 10px;
 }
 
-.menu-close-btn span {
+.menu-toggle-btn span, .menu-close-btn span {
     display: block;
     height: 2px;
-    width: 60px;      
+    width: 60px;
     background: black;
     border-radius: 2px;
     transition: 0.3s;
+}
+
+.menu-toggle-btn, .menu-close-btn {
+    gap: 14px;
 }
 
 .hero img {
@@ -214,14 +217,14 @@ header.desktop-header {
     gap: 5px;
 }
 
-.menu-toggle-btn span {
+.menu-toggle-btn span, .menu-close-btn span {
     display: block;
-    width: 30px;
-    height: 3px;
+    height: 2px;
+    width: 60px;
     background: black;
     border-radius: 2px;
+    transition: 0.3s;
 }
-
 .desktop-header {
     display: flex;
     justify-content: space-between;
@@ -403,7 +406,6 @@ header.desktop-header {
         align-items: center;
         background-color: var(--primary-color);
         padding: 10px 15px;
-        flex-direction: row-reverse;
     }
 
     .menu-toggle-btn {
@@ -419,24 +421,24 @@ header.desktop-header {
         gap: 5px;
     }
 
-    .menu-toggle-btn span {
+    .menu-toggle-btn span, .menu-close-btn span {
         display: block;
-        width: 30px;
-        height: 3px;
+        height: 2px;
+        width: 60px;
         background: black;
         border-radius: 2px;
-    }
+}
         .desktop-header {
         display: none; /* Hide desktop header on smaller screens */
     }
 
     .sidenav {
         width: 0; /* Keep sidenav hidden by default */
-        transition: width 0.3s ease;
+        transition: width 0s ease;
     }
 
     .overlay {
         display: none; /* Keep overlay hidden by default */
-        transition: opacity 0.3s ease;
+        transition: opacity 0 ease;
     }
 }

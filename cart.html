@@ -27,12 +27,13 @@
 
     <!-- Mobile Header -->
     <header class="mobile-header">
+        <a class="logo" href="index.html">Totally Reptiles</a>
+
         <button class="menu-toggle-btn">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <a class="logo" href="index.html">Totally Reptiles</a>
     </header>
 
     <!-- Traditional Header for Larger Screens -->
@@ -80,7 +81,7 @@
     </footer>
 
     <script>
-        const menuIcon = document.querySelector('.menu-icon');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn')
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
@@ -96,7 +97,7 @@
             overlay.style.display = "none";
         }
 
-        menuIcon.addEventListener('click', openNav);
+        menuToggleBtn.addEventListener('click', openNav); 
         closeBtn.addEventListener('click', closeNav);
         overlay.addEventListener('click', closeNav);
 
