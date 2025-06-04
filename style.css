@@ -617,3 +617,22 @@ footer {
         display: flex;
     }
 }
+@media (min-width: 768px) {
+    .mobile-header {
+        display: none; /* Hide mobile header on larger screens */
+    }
+
+    .desktop-header {
+        display: flex; /* Show desktop header on larger screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-header {
+        display: none; /* Hide desktop header on smaller screens */
+    }
+
+    .mobile-header {
+        display: flex; /* Show mobile header on smaller screens */
+    }
+}
