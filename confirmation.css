@@ -79,33 +79,11 @@
     font-size: 1em;
     color: #222;
 }
-.confirmation-prod-desc {
-    font-size: 0.95em;
-    color: #444;
-}
 .confirmation-col-qty {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5em;
-}
-.confirmation-qty-btn {
-    background: #1976d2;
-    color: #fff;
-    border: none;
-    width: 32px;
-    height: 32px;
-    font-size: 1.2em;
-    cursor: not-allowed;
-    border-radius: 4px;
-    font-family: inherit;
-    opacity: 0.7;
-}
-.confirmation-qty-value {
-    min-width: 24px;
-    text-align: center;
-    font-size: 1.1em;
-    font-family: inherit;
 }
 .confirmation-col-total {
     text-align: right;
