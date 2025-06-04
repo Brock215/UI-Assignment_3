@@ -15,6 +15,7 @@ header {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 a{
     text-decoration: none;
     
@@ -29,6 +30,7 @@ a:visited{
     margin: 0;
     padding-left: 20px;
     text-decoration: none;
+    color: black;
 }
 
 .menu-icon {
@@ -440,5 +442,178 @@ header.desktop-header {
     .overlay {
         display: none; /* Keep overlay hidden by default */
         transition: opacity 0 ease;
+    }
+}
+
+/* Moved styles from other CSS files */
+body {
+    font-family: var(--primary-font);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    padding-left: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-toggle-btn, .menu-close-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    gap: 14px;
+}
+
+.menu-toggle-btn span, .menu-close-btn span {
+    display: block;
+    height: 2px;
+    width: 60px;
+    background: black;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
+
+.sidenav a {
+    background-color: var(--primary-color);
+    padding: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.sidenav a:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    opacity: 0;
+    z-index: 1000;
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.footer-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: #e0e0e0;
+    color: #222;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    z-index: 100;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.footer-section {
+    margin-bottom: 0.2em;
+}
+
+.cart-icon, .search-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 10px 15px;
+}
+
+.desktop-header {
+    display: none;
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+    font-weight: bold;
+}
+
+.desktop-nav a:hover {
+    color: var(--primary-color-dark);
+}
+
+@media (max-width: 768px) {
+    .desktop-header {
+        display: none;
+    }
+
+    .mobile-header {
+        display: flex;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-header {
+        display: none;
+    }
+
+    .desktop-header {
+        display: flex;
     }
 }
