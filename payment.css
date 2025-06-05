@@ -86,3 +86,11 @@
         gap: 0.5em;
     }
 }
+@media (min-width: 601px){
+    .payment-main{
+        max-width: 80vw;
+    }
+    h1{
+        font-size:3rem;
+    }
+}

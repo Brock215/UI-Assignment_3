@@ -44,12 +44,12 @@
         <a href="products.html" onclick="setCategory('Bird')">Bird</a>
         <a href="products.html" onclick="setCategory('Fish')">Fish</a>
         <a href="products.html" onclick="setCategory('Reptiles')">Reptiles</a>
-        <a href="#" id="contact-link">Contact</a>
+        <a href="cart.html" id="contact-link">Cart</a>
     </nav>
     <div class="overlay"></div>
 
     <main class="search-main">
-        <h1>Search Products</h1>
+        <h1>Search</h1>
         <form class="search-form">
             <input type="text" class="search-input" placeholder="Search for products..." />
             <button type="submit" class="search-btn">Search</button>
@@ -141,19 +141,27 @@
         };
 
         // Sidenav toggle code (copy from other pages)
-        const menuIcon = document.querySelector('.menu-icon');
+        const menuToggleBtn = document.querySelector('.menu-toggle-btn'); // Updated selector
         const sidenav = document.querySelector('.sidenav');
         const closeBtn = document.querySelector('.menu-close-btn');
         const overlay = document.querySelector('.overlay');
 
-        closeBtn.addEventListener('click', () => {
-            sidenav.style.width = '0';
-            overlay.style.opacity = "1";
+        menuToggleBtn.addEventListener('click', () => { // Updated event listener
+            sidenav.style.width = '40%'; // Open the side navigation
+            overlay.style.opacity = "0.5";
+            overlay.style.display = "block";
         });
 
-        menuIcon.addEventListener('click', () => {
-            sidenav.style.width = '40%';
-            overlay.style.opacity = "0.5";
+        closeBtn.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
+        });
+
+        overlay.addEventListener('click', () => {
+            sidenav.style.width = '0'; // Close the side navigation
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
         });
 
         // Search functionality

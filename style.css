@@ -74,6 +74,7 @@ a:visited{
 
 .about p, .about h2 {
     text-align: center;
+    
 }
 
 .categories {
@@ -107,7 +108,20 @@ a:visited{
 }
 
 .categories header{
-    text-align: left;
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    background-color: transparent; /* Ensure no background color is inherited */
+    align-items: center;
+}
+.categories header hr {
+    flex-grow: 1; 
+    border: none;
+    border-top: 2px solid black; /* Explicitly set the color to black */
+}
+.categories header h2 {
+    margin: 0px;
+
 }
 .categories .category {
     position: relative; /* Enable positioning for text overlay */
@@ -316,6 +330,9 @@ footer {
     .categories {
         padding: 10px;
     }
+    .categories header h2{
+        font-size: 3rem;
+    }
 
     .categories .category-slider {
         align-items: center;
@@ -351,7 +368,7 @@ footer {
         height: 250px; 
         object-fit: cover;
         border-radius: 10px;
-        margin-left: 20px; 
+        margin-left: 5px; 
     }
     h2{
         font-size: 2rem; 

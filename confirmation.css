@@ -100,7 +100,7 @@
 .confirmation-continue-btn {
     width: 100%;
     background: #007aff;
-    color: #fff;
+    color: #fff !important;
     font-size: 1.3em;
     font-family: var(--primary-font, serif);
     font-weight: bold;

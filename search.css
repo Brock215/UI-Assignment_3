@@ -1,9 +1,3 @@
-.search-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 .search-form {
     position: relative;
     margin: 0 auto 40px;
@@ -42,10 +36,9 @@
 
 .product-card {
     background: white;
-    border-radius: 10px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
 }
 
 .product-card img {
@@ -53,16 +46,57 @@
     height: auto;
     object-fit: cover;
     border-radius: 8px;
+    border: 1px solid #1976d2;
     margin-bottom: 10px;
 }
 
 .product-card button {
-    width: 100%;
+    width: 50%; 
     padding: 10px;
     border: none;
-    border-radius: 5px;
     background: #007bff;
     color: white;
     font-weight: bold;
     cursor: pointer;
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+/* mobile devices */
+@media (max-width: 768px) {
+    .search-input {
+        width: 90%;
+    }
+    .search-results {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .product-card {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .product-card img {
+        height: 120px;
+        width: 120px;
+    }
+    .product-card button {
+        padding: 2px;
+        width: 50%;
+        font-size: 0.9em;
+    }
+    .search-main {
+        margin: 0 auto; /* Ensure the container is centered */
+        padding: 0 10px; /* Add padding to prevent content from touching the edges */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+}
+/* Desktop devices */
+@media (min-width: 769px) {
+    .search-main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 }
