@@ -194,10 +194,6 @@ footer {
     transition: opacity 0.3s ease;
 }
 
-header.desktop-header {
-    display: none; /* Hide the traditional header by default */
-}
-
 .mobile-header {
     display: flex;
     justify-content: space-between;
@@ -232,35 +228,24 @@ header.desktop-header {
     justify-content: space-between;
     align-items: center;
     background-color: var(--primary-color);
-    padding: 10px 20px;
+    padding: 20px;
 }
 
 .desktop-header .logo {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 900; 
     text-decoration: none;
     color: black;
 }
 
-.desktop-nav {
-    display: flex;
-    gap: 20px;
+.search-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }
-
-.desktop-nav a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    color: black;
-    font-weight: bold;
-}
-
-.desktop-nav a:hover {
-    color: var(--primary-color-dark);
-}
-
-.cart-icon, .search-icon {
-    width: 24px;
-    height: 24px;
+.cart-icon{
+    width: 35px;
+    height: 35px;
     object-fit: contain;
 }
 
@@ -333,7 +318,7 @@ header.desktop-header {
     }
 
     .hero img {
-        height: 400px;
+        height: 700px;
         object-fit: cover;
     }
 
@@ -564,12 +549,6 @@ footer {
     margin-bottom: 0.2em;
 }
 
-.cart-icon, .search-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
 .mobile-header {
     display: flex;
     justify-content: space-between;
@@ -584,14 +563,16 @@ footer {
 
 .desktop-nav {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
 .desktop-nav a {
+    font-family: var(--secondary-font);
+    font-weight: 500; /* Ensure lighter font weight */
     text-decoration: none;
     font-size: 1.2rem;
     color: black;
-    font-weight: bold;
 }
 
 .desktop-nav a:hover {
