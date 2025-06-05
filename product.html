@@ -152,11 +152,30 @@
             });
         });
 
-        // Add to cart button functionality with localStorage
-        const addToCartBtn = document.getElementById('add-to-cart-link');
-        if (addToCartBtn) {
-            addToCartBtn.addEventListener('click', function(e) {
+        // Add to cart button functionality for mobile
+        const addToCartBtnMobile = document.getElementById('add-to-cart-link');
+        if (addToCartBtnMobile) {
+            addToCartBtnMobile.addEventListener('click', function(e) {
                 const productName = document.querySelector('.product-title').textContent.trim();
+                const quantity = parseInt(document.querySelector('.quantity-value').textContent);
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+                if (cart[productName]) {
+                    cart[productName] += quantity;
+                } else {
+                    cart[productName] = quantity;
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+            });
+        }
+
+        // Add to cart button functionality for desktop
+        const addToCartBtnDesktop = document.getElementById('add-to-cart-link-desktop');
+        if (addToCartBtnDesktop) {
+            addToCartBtnDesktop.addEventListener('click', function(e) {
+                const productName = document.querySelector('#product-title-desktop').textContent.trim();
                 const quantity = parseInt(document.querySelector('.quantity-value').textContent);
 
                 let cart = JSON.parse(localStorage.getItem('cart')) || {};
