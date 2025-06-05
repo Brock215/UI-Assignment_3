@@ -175,34 +175,8 @@ footer {
     margin-bottom: 0.2em;
 }
 
-.sidenav {
-    height: 100%; 
-    width: 0px; 
-    position: fixed;
-    top: 0;
-    right: 0;
-    background-color: var(--primary-color); 
-    overflow-x: hidden; 
-    display:flex;
-    flex-direction: column;
-    text-align: center;
-    z-index: 1001; /* makes it the top element */
-    transition: width 0.3s ease;
-}
-.sidenav a {
-    background-color: var(--primary-color); 
-    padding: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
-.sidenav a:visited {
-    color: black;
-}
-.sidenav a:hover {
-  background-color: var(--primary-color-dark); 
-}
+
+
 .overlay{
     position: fixed;
     top: 0;
@@ -538,11 +512,12 @@ header {
     text-decoration: none;
     color: black;
 }
-
-.sidenav a:hover {
-    background-color: var(--primary-color-dark);
+.sidenav a:visited {
+    color: black;
 }
-
+.sidenav a:hover {
+  background-color: var(--primary-color-dark); 
+}
 .overlay {
     position: fixed;
     top: 0;
