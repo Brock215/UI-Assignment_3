@@ -153,6 +153,28 @@ footer {
     color: black; /* Adjust text color for contrast */
 }
 
+.footer-bar {
+    position: static; 
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: #e0e0e0;
+    color: #222;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    z-index: 100;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.footer-section {
+    margin-bottom: 0.2em;
+}
+
 .sidenav {
     height: 100%; 
     width: 0px; 
@@ -544,7 +566,7 @@ footer {
 }
 
 .footer-bar {
-    position: fixed;
+    position: static;
     left: 0;
     bottom: 0;
     width: 100vw;
