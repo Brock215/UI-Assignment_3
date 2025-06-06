@@ -4,6 +4,11 @@
     background: #fff;
     padding: 0 0 2em 0;
 }
+input{
+    border: 1px solid #005bb5;
+    border-radius: 5px;
+}
+
 .payment-summary-bar {
     display: flex;
     justify-content: space-between;
@@ -46,7 +51,7 @@
 .order-summary {
     margin-top: 0.7em;
     margin-bottom: 1.2em;
-    border-top: 1px solid #bdbdbd;
+    border-top: 1px solid #005bb5;
     padding-top: 0.7em;
     font-size: 1em;
 }
